@@ -1,0 +1,5 @@
+#!/bin/bash --norc
+
+exec -a x86_64-linux-objdump \
+    external/com_bootlin_toolchains_gcc_7_3_0/bin/x86_64-buildroot-linux-gnu-objdump.br_real \
+    "$@"

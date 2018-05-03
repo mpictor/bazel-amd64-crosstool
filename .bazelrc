@@ -1,0 +1,6 @@
+build:default --crosstool_top=//tools/amd64_compiler:toolchain
+build:default --verbose_failures
+build:default --cpu=amd64
+build:default --local_resources 8192.0,0.5,0.5
+build:default --nokeep_going
+build:default -j 1
