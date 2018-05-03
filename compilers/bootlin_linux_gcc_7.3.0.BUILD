@@ -63,6 +63,8 @@ filegroup(
     'libexec/**',
     'lib/gcc/arm-linux-gnueabihf/**',
     'include/**',
+    'bin/**',
+    'lib/**',
   ]),
 )
 

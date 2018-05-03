@@ -21,9 +21,9 @@ filegroup(
 filegroup(
     name = "srcs",
     srcs = glob(["**"]) + [
-        #"//src/test/shell/bazel/testdata/bazel_toolchain_test_data/tools/amd64_compiler/bootlin_linux_gcc:srcs",
+        "//tools/amd64_compiler/bootlin_linux_gcc:srcs",
     ],
-    #visibility = ["//src/test/shell/bazel/testdata/bazel_toolchain_test_data:__pkg__"],
+    visibility = ["//:__pkg__"],
 )
 
 cc_toolchain_suite(

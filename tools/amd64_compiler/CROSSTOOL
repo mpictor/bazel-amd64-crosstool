@@ -50,41 +50,56 @@ toolchain {
   compiler_flag: "--sysroot=external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/sysroot"
 
   cxx_flag: "-std=gnu++14"
+
   compiler_flag: "-nostdinc"
+
+  # on the gcc command line, c++ header dirs must come first
+  # however, compiler_flag entries are inserted and then cxx_flag entries. if c headers are in compiler_flag and
+  # c++ in cxx_flag, the result is that the c header dirs are searched before a c++ header (cmath) is found. when
+  # it include_next's math.h, the already-searched dirs are skipped. any c header locations included as part of
+  # cxx_flag's are discarded as duplicates, so (it seems) the only way to make it work is to only use compiler_flag
+  # for include dirs, and not cxx_flag.
+
+  # default paths are output from the following:
+  # cpp -x c++ -v /dev/null -o /dev/null
+  # cpp -v /dev/null -o /dev/null
+
+  compiler_flag: "-isystem"
+  compiler_flag: "external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/include/c++/7.3.0"
+  compiler_flag: "-isystem"
+  compiler_flag: "external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/include/c++/7.3.0/x86_64-buildroot-linux-gnu"
+  compiler_flag: "-isystem"
+  compiler_flag: "external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/include/c++/7.3.0/backward"
   compiler_flag: "-isystem"
   compiler_flag: "external/com_bootlin_toolchains_gcc_7_3_0/lib/gcc/x86_64-buildroot-linux-gnu/7.3.0/include"
   compiler_flag: "-isystem"
-  compiler_flag: "external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/sysroot/usr/include"
-  compiler_flag: "-isystem"
   compiler_flag: "external/com_bootlin_toolchains_gcc_7_3_0/lib/gcc/x86_64-buildroot-linux-gnu/7.3.0/include-fixed"
   compiler_flag: "-isystem"
+  compiler_flag: "external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/include"
+  compiler_flag: "-isystem"
   compiler_flag: "external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/sysroot/usr/include"
-  cxx_flag: "-isystem"
-  cxx_flag: "external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/include/c++/7.3.0/x86_64-buildroot-linux-gnu"
-  cxx_flag: "-isystem"
-  cxx_flag: "external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/include/c++/7.3.0"
-  cxx_flag: "-isystem"
-  cxx_flag: "external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/include/c++/7.3.0/x86_64-buildroot-linux-gnu"
-  cxx_flag: "-isystem"
-  cxx_flag: "external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/include/c++/7.3.0"
+
+
+  cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//x86_64-buildroot-linux-gnu/include)%"
+  cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//x86_64-buildroot-linux-gnu/include)%/c++/7.3.0"
+  cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//x86_64-buildroot-linux-gnu/include)%/c++/7.3.0/backward"
+  cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//x86_64-buildroot-linux-gnu/include)%/c++/7.3.0/x86_64-buildroot-linux-gnu"
 
   cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//include)%"
   cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//x86_64-buildroot-linux-gnu/sysroot/usr/include)%"
   cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//x86_64-buildroot-linux-gnu/sysroot/usr/lib/include)%"
   cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//x86_64-buildroot-linux-gnu/sysroot/lib/gcc/x86_64-buildroot-linux-gnu/7.3.0/include-fixed)%"
-  #cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//include)%/c++/5.3.1"
   cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//x86_64-buildroot-linux-gnu/sysroot/lib/gcc/x86_64-buildroot-linux-gnu/7.3.0/include)%"
   cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//x86_64-buildroot-linux-gnu/sysroot/lib/gcc/x86_64-buildroot-linux-gnu/7.3.0/include-fixed)%"
   cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//lib/gcc/x86_64-buildroot-linux-gnu/7.3.0/include)%"
   cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//lib/gcc/x86_64-buildroot-linux-gnu/7.3.0/include-fixed)%"
-  #cxx_builtin_include_directory: "%package(@com_bootlin_toolchains_gcc_7_3_0//arm-linux-gnueabihf/include)%/c++/5.3.1"
 
   linker_flag: "--sysroot=external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/sysroot"
   linker_flag: "-lstdc++"
   linker_flag: "-latomic"
   linker_flag: "-lm"
   linker_flag: "-lpthread"
-  linker_flag: "-Ltools/amd64_compiler/bootlin_linux_gcc/clang_more_libs"
+  linker_flag: "-Lexternal/com_bootlin_toolchains_gcc_7_3_0/libexec/gcc/x86_64-buildroot-linux-gnu/7.3.0/"
   linker_flag: "-Lexternal/com_bootlin_toolchains_gcc_7_3_0/lib"
   linker_flag: "-Lexternal/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/sysroot/lib"
   linker_flag: "-Lexternal/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/sysroot/usr/lib"

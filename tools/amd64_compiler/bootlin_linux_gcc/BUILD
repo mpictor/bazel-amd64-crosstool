@@ -3,7 +3,6 @@ package(default_visibility = ["//tools/amd64_compiler:__pkg__"])
 filegroup(
     name = "srcs",
     srcs = glob(["**"]),
-    #visibility = ["//src/test/shell/bazel/testdata/bazel_toolchain_test_data/tools/amd64_compiler:__pkg__"],
 )
 
 filegroup(

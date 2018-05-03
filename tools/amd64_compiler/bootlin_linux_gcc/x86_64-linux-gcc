@@ -1,6 +1,6 @@
 #!/bin/bash --norc
 
 PATH="external/com_bootlin_toolchains_gcc_7_3_0/libexec/gcc/x86_64-buildroot-linux-gnu/7.3.0:$PATH" \
-    exec \
+    exec -a x86_64-buildroot-linux-gnu-gcc\
     external/com_bootlin_toolchains_gcc_7_3_0/bin/x86_64-buildroot-linux-gnu-gcc.br_real \
     "$@"
