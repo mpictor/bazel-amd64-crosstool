@@ -1,7 +1,30 @@
 Example using bazel with a non-system compiler and crosstool
 
-**Note that this does not (yet) work.**
 
 I copied from bazel's [bazel_toolchain_test_data](https://github.com/bazelbuild/bazel/tree/master/src/test/shell/bazel/testdata/bazel_toolchain_test_data), which uses a linaro arm compiler, and substituted an amd64 compiler from bootlin.
 
 https://groups.google.com/forum/#!topic/bazel-discuss/o0mTszeaJ5E
+
+
+## Compiling the compiler ##
+
+__Included for completeness.__ You should download the tarball from TODO instead.
+
+The config file here works with crosstool-ng rev d7eed4ee52a793. I cannot guarantee that it will work with other versions.
+
+```bash
+# note that you will need to adjust paths if you do not run these commands from the bazel-amd64-crosstool dir!
+git clone https://github.com/crosstool-ng/crosstool-ng
+cd crosstool-ng
+git checkout -b bazel-amd64-crosstool
+git reset --hard d7eed4ee52a793
+./bootstrap
+./configure --enable-local
+make
+cp ../crosstoolng.config .config
+./ct-ng build.`nproc`
+# this will take a while
+
+tar cJf ~/x-tools/x86_64-unknown-linux-gnu-gcc-730.tar.xz -C ~/x-tools/ x86_64-unknown-linux-gnu
+
+```
