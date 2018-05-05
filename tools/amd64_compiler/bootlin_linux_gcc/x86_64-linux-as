@@ -1,5 +1,0 @@
-#!/bin/bash --norc
-
-exec -a x86_64-linux-as \
-    external/com_bootlin_toolchains_gcc_7_3_0/bin/x86_64-buildroot-linux-gnu-as.br_real \
-    "$@"

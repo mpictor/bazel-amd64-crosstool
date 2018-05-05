@@ -1,8 +1,0 @@
-#!/bin/bash --norc
-
-#LD_LIBRARY_PATH="external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/sysroot/lib:external/com_bootlin_toolchains_gcc_7_3_0/libexec/gcc/x86_64-buildroot-linux-gnu/7.3.0:$LD_LIBRARY_PATH" \
-#external/com_bootlin_toolchains_gcc_7_3_0/x86_64-buildroot-linux-gnu/bin:external/com_bootlin_toolchains_gcc_7_3_0/bin:
-PATH="external/com_bootlin_toolchains_gcc_7_3_0/libexec/gcc/x86_64-buildroot-linux-gnu/7.3.0:$PATH" \
-    exec -a x86_64-buildroot-linux-gnu-gcc \
-    external/com_bootlin_toolchains_gcc_7_3_0/bin/x86_64-buildroot-linux-gnu-gcc.br_real \
-    "$@"
