@@ -8,7 +8,7 @@ https://groups.google.com/forum/#!topic/bazel-discuss/o0mTszeaJ5E
 
 ## Compiling the compiler ##
 
-__Included for completeness.__ You should download the tarball from TODO instead.
+__Included for completeness.__ Bazel will download the tarball to its cache.
 
 The config file here works with crosstool-ng rev d7eed4ee52a793. I cannot guarantee that it will work with other versions.
 
