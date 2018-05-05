@@ -3,7 +3,9 @@ Example using bazel with a non-system compiler and crosstool
 
 I copied from bazel's [bazel_toolchain_test_data](https://github.com/bazelbuild/bazel/tree/master/src/test/shell/bazel/testdata/bazel_toolchain_test_data), which uses a linaro arm compiler, and substituted an amd64 compiler. I tried one from bootlin, but its gcc was named `gcc.br_real` which caused problems. Fixing the archive and re-creating may have fixed it, but I felt I'd have more luck building a toolchain with crosstool-ng (documented below).
 
-https://groups.google.com/forum/#!topic/bazel-discuss/o0mTszeaJ5E
+
+## Use ##
+This doesn't do much! But if you want to try it, install bazel, clone the repo, and then run `./run.sh`. That will download the 120MB __(!)__ toolchain, extract, and compile the hello world demo.
 
 
 ## Compiling the compiler ##
