@@ -5,7 +5,7 @@ def bazel_crosstool_deps():
     _maybe(
         native.new_http_archive,
         name = 'x86_64_unknown_linux_gnu_gcc_730',
-        build_file = '@bazel_amd64_crosstool//compilers/x86_64-unknown-linux-gnu-gcc-730.BUILD',
+        build_file = '@bazel_amd64_crosstool//:compilers/x86_64-unknown-linux-gnu-gcc-730.BUILD',
         urls = ['https://github.com/mpictor/bazel-amd64-crosstool/releases/download/v0.1/x86_64-unknown-linux-gnu-gcc-730.tar.xz',
                 'file:///home/mark/x-tools/x86_64-unknown-linux-gnu-gcc-730.tar.xz'],
         strip_prefix = 'x86_64-unknown-linux-gnu',
