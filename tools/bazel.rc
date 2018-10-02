@@ -19,7 +19,7 @@ build:cross --crosstool_top=//tools/amd64_compiler:toolchain --cpu=k8
 build:bf --spawn_strategy=remote --genrule_strategy=remote --strategy=Javac=remote --strategy=Closure=remote
 build:bf --remote_executor=localhost:8980
 
-build:bdbg --verbose_failures --experimental_remote_grpc_log=remote.log --auth_enabled=false --tls_enabled=false --build_event_text_file=bep.txt --announce_rc --subcommands
+build:bdbg --verbose_failures --experimental_remote_grpc_log=remote.log --auth_enabled=false --tls_enabled=false --build_event_text_file=bep.txt --announce_rc --subcommands --experimental_execution_log_file=xx.log
 
 
 # Docker Sandbox Mode
