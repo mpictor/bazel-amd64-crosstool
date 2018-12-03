@@ -32,7 +32,7 @@ toolchain {
   target_cpu: "amd64"
   target_system_name: "amd64"
 
-  tool_path { name: "ar" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-ar" }
+  tool_path { name: "ar" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-gcc-ar" }
   tool_path { name: "compat-ld" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-ld.bfd" }
   tool_path { name: "cpp" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-gcc" }
   tool_path { name: "dwp" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-dwp" }
@@ -41,7 +41,7 @@ toolchain {
   # C(++) compiles invoke the compiler (as that is the one knowing where
   # to find libraries), but we provide LD so other rules can invoke the linker.
   tool_path { name: "ld" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-ld.gold" }
-  tool_path { name: "nm" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-nm" }
+  tool_path { name: "nm" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-gcc-nm" }
   tool_path { name: "objcopy" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-objcopy" }
   objcopy_embed_flag: "-I"
   objcopy_embed_flag: "binary"
@@ -104,6 +104,7 @@ toolchain {
   linker_flag: "-fuse-ld=gold"
   linker_flag: "-Wl,-no-as-needed"
   linker_flag: "-Wl,-z,relro,-z,now"
+  unfiltered_cxx_flag: '-flto'
 
   # Anticipated future default.
   # This makes GCC and Clang do what we want when called through symlinks.
@@ -124,7 +125,7 @@ toolchain {
   compiler_flag: "-U_FORTIFY_SOURCE"
   compiler_flag: "-fstack-protector"
   compiler_flag: "-fPIE"
-  linker_flag: "-pie"
+  #linker_flag: "-pie"
   linker_flag: "-Wl,-z,relro,-z,now"
 
   # Enable coloring even if there's no attached terminal. Bazel removes the
