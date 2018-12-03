@@ -16,7 +16,7 @@ filegroup(
 filegroup(
     name = "ar",
     srcs = [
-        "x86_64-unknown-linux-gnu-ar",
+        "x86_64-unknown-linux-gnu-gcc-ar",
         "@x86_64_unknown_linux_gnu_gcc_730//:ar",
     ],
 )
@@ -33,7 +33,7 @@ filegroup(
 filegroup(
     name = "nm",
     srcs = [
-        "x86_64-unknown-linux-gnu-nm",
+        "x86_64-unknown-linux-gnu-gcc-nm",
         "@x86_64_unknown_linux_gnu_gcc_730//:nm",
     ],
 )
