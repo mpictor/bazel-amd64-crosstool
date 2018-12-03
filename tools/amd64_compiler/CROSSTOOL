@@ -33,14 +33,14 @@ toolchain {
   target_system_name: "amd64"
 
   tool_path { name: "ar" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-ar" }
-  tool_path { name: "compat-ld" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-ld" }
+  tool_path { name: "compat-ld" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-ld.bfd" }
   tool_path { name: "cpp" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-gcc" }
   tool_path { name: "dwp" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-dwp" }
   tool_path { name: "gcc" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-gcc" }
   tool_path { name: "gcov" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-gcov" }
   # C(++) compiles invoke the compiler (as that is the one knowing where
   # to find libraries), but we provide LD so other rules can invoke the linker.
-  tool_path { name: "ld" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-ld" }
+  tool_path { name: "ld" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-ld.gold" }
   tool_path { name: "nm" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-nm" }
   tool_path { name: "objcopy" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-objcopy" }
   objcopy_embed_flag: "-I"

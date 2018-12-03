@@ -24,7 +24,8 @@ filegroup(
 filegroup(
     name = "ld",
     srcs = [
-        "x86_64-unknown-linux-gnu-ld",
+        "x86_64-unknown-linux-gnu-ld.bfd",
+        "x86_64-unknown-linux-gnu-ld.gold",
         "@x86_64_unknown_linux_gnu_gcc_730//:ld",
     ],
 )
