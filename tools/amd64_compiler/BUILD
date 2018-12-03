@@ -71,7 +71,7 @@ cc_toolchain(
     ar_files = "//tools/amd64_compiler/x86_64-unknown-linux-gnu:ar",
     as_files = "//tools/amd64_compiler/x86_64-unknown-linux-gnu:as",
     compiler_files = ":gcc_linux_compiler_files",
-    cpu = "amd64",
+    cpu = "k8",
     dwp_files = ":empty",
     dynamic_runtime_libs = [":empty"],
     linker_files = ":gcc_linux_linker_files",
