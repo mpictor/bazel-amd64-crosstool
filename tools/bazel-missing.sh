@@ -2,7 +2,7 @@
 
 # bazel-missing.sh: helper for when you have missing headers
 # use: bazel-missing.sh <tgt-to-build>
-# assumes you run with --verbose_failures and --experimental_sandbox_base=/dev/shm/
+# assumes your .bazelrc has `build --verbose_failures` and `build --experimental_sandbox_base=/dev/shm/`
 
 # TODO different way to do this faster?
 echo "running with -j 1, may be slow..."
