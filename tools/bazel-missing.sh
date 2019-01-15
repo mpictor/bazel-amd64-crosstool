@@ -6,11 +6,14 @@
 
 # TODO different way to do this faster?
 echo "running with -j 1, may be slow..."
-output=$(bazel build -j 1 --sandbox_debug $1 2>&1)
+output=$(bazel build -j 1 --sandbox_debug $@ 2>&1)
 
 missing=$(grep 'No such file or directory' <<<"$output" |\
-  cut -d: -f5 |\
-  sed 's/\x1b\[.\{0,2\}m//g;s/\x1b(.//g;') #removes ansi control sequences
+  #remove ansi control sequences
+  sed 's/\x1b\[.\{0,2\}m//g;s/\x1b(.//g;' |\
+  sed -ne 's|.*: *\([^:]*\):[^:]*No such file or directory|\1|p')
+  #cut -d: -f5 |\
+  #)
 if [[ -z "$missing" ]]; then
   echo "error locating missing file error"
   echo $missing
@@ -18,11 +21,15 @@ if [[ -z "$missing" ]]; then
   exit 1
 fi
 
-sdbx=$(grep -e '/dev/shm.*linux-sandbox' <<<$output | tail -n1 | cut -d: -f4-)
+sdbx=$(grep -e '/dev/shm.*linux-sandbox' <<<$output | tail -n1 | cut -d: -f4- | sed 's/^ \+//')
 if [[ -z "$sdbx" ]]; then
   echo "error locating sandbox dir"
   tail -n20 <<<$output
   exit 1
+fi
+if [[ ! -d $sdbx ]]; then
+  echo "$sdbx does not exist"
+  sleep 1
 fi
 if [[ ! -d $sdbx ]]; then
   echo "$sdbx does not exist"
