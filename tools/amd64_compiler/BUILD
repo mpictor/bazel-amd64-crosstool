@@ -11,7 +11,7 @@
 filegroup(
     name = "toolchain_fg",
     srcs = [
-        ":cc-compiler-amd64",
+        ":cc-compiler-k8",
         "@x86_64_unknown_linux_gnu_gcc_730//:compiler_components",
     ],
 )
@@ -28,9 +28,11 @@ cc_toolchain_suite(
     name = "toolchain",
     # target_cpu | compiler
     toolchains = {
-        "k8|gcc": "cc-compiler-amd64",
-        "amd64|gcc": "cc-compiler-amd64",
+        "k8|gcc": "cc-compiler-k8",
+        "k8": "cc-compiler-k8",
+        "amd64|gcc": "cc-compiler-k8",
     },
+    visibility = ["//visibility:public"],
 )
 
 filegroup(
@@ -66,12 +68,12 @@ filegroup(
 )
 
 cc_toolchain(
-    name = "cc-compiler-amd64",
+    name = "cc-compiler-k8",
     all_files = ":gcc_linux_all_files",
     ar_files = "//tools/amd64_compiler/x86_64-unknown-linux-gnu:ar",
     as_files = "//tools/amd64_compiler/x86_64-unknown-linux-gnu:as",
     compiler_files = ":gcc_linux_compiler_files",
-    cpu = "amd64",
+    cpu = "k8",
     dwp_files = ":empty",
     dynamic_runtime_libs = [":empty"],
     linker_files = ":gcc_linux_linker_files",

@@ -1,25 +1,25 @@
 major_version: "local"
 minor_version: ""
-default_target_cpu: "amd64"
+default_target_cpu: "k8"
 
 default_toolchain {
-  cpu: "amd64"
-  toolchain_identifier: "gcc_linux_amd64"
+  cpu: "k8"
+  toolchain_identifier: "gcc_linux_k8"
 }
 
 default_toolchain {
   # k8 is required
   cpu: "k8"
-  toolchain_identifier: "gcc_linux_amd64"
+  toolchain_identifier: "gcc_linux_k8"
 }
 
 toolchain {
-  toolchain_identifier: "gcc_linux_amd64"
+  toolchain_identifier: "gcc_linux_k8"
   abi_version: "gcc"
   abi_libc_version: "glibc_2.27"
   builtin_sysroot: ""
   compiler: "gcc"
-  host_system_name: "amd64"
+  host_system_name: "k8"
   needsPic: true
   supports_gold_linker: true
   supports_incremental_linker: false
@@ -29,8 +29,8 @@ toolchain {
   supports_start_end_lib: true
   supports_thin_archives: true
   target_libc: "glibc_2.27"
-  target_cpu: "amd64"
-  target_system_name: "amd64"
+  target_cpu: "k8"
+  target_system_name: "k8"
 
   tool_path { name: "ar" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-ar" }
   tool_path { name: "compat-ld" path: "x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu-ld" }

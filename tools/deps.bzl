@@ -1,9 +1,9 @@
 
 # inspired by go_rules_dependencies() at https://github.com/bazelbuild/rules_go/blob/master/go/private/repositories.bzl
-
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 def bazel_crosstool_deps():
     _maybe(
-        native.new_http_archive,
+        http_archive,
         name = 'x86_64_unknown_linux_gnu_gcc_730',
         build_file = '@bazel_amd64_crosstool//:compilers/x86_64-unknown-linux-gnu-gcc-730.BUILD',
         urls = ['https://github.com/mpictor/bazel-amd64-crosstool/releases/download/v0.1/x86_64-unknown-linux-gnu-gcc-730.tar.xz'],
